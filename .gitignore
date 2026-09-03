@@ -1,0 +1,21 @@
+# Node
+node_modules/
+dist/
+build/
+*.log
+
+# Local env and secrets
+.env
+.env.local
+.env.*.local
+
+# SQLite (AIMarket local data store)
+*.db
+*.db-shm
+*.db-wal
+
+# azd
+.azure/
+
+# macOS
+.DS_Store
