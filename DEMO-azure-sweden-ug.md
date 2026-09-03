@@ -14,6 +14,9 @@ Run a live demo that shows how to build an AIMarket-style app with **GitHub Spec
 Reference scenario:  
 https://github.com/DanWahlin/github-azure-agentic-journeys/blob/main/journeys/aimarket/README.md
 
+Repository reference:  
+https://github.com/DanWahlin/github-azure-agentic-journeys/tree/main
+
 ---
 
 ## Explicit alignment to the AIMarket reference
