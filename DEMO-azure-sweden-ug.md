@@ -16,6 +16,14 @@ https://github.com/DanWahlin/github-azure-agentic-journeys/blob/main/journeys/ai
 
 ---
 
+## Explicit alignment to the AIMarket reference
+
+- Keep the same AIMarket outcome and demo storyline from the reference journey.
+- Execute the build flow with **GitHub Spec‑Kit** (`constitution → specify → plan → tasks → implement`) instead of a hand-written plan.
+- Deploy with **Azure Verified Modules (AVM)**, with Bicep as the primary path and Terraform as parity.
+
+---
+
 ## Demo narrative (what the audience should see)
 
 1. Start from business intent, not code.
