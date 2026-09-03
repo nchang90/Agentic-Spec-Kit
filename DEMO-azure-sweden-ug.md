@@ -51,6 +51,34 @@ If time is tight, shorten implement details and keep Terraform to a structural c
 
 ---
 
+## Example prompts (copy/paste)
+
+### Constitution
+
+`/speckit.constitution Define standing engineering rules for an AIMarket-style Azure app: repository pattern via DATA_PROVIDER, server-side validation, money in integer cents, grounded AI responses only, AVM-first infrastructure, managed identity preference, no secrets in source, and deployment validation before release.`
+
+### Specification
+
+`/speckit.specify Create a feature spec for AIMarket with REST API + React storefront, product catalog, order flow, semantic product search, and an AI shopping assistant. Include acceptance criteria for graceful AI fallback and inventory-safe ordering.`
+
+### Plan
+
+`/speckit.plan Generate the implementation plan for the AIMarket spec, including architecture, data model, API routes, frontend flow, AI integration boundaries, and Azure deployment approach using AVM modules.`
+
+### Tasks
+
+`/speckit.tasks Generate dependency-ordered tasks from the plan with clear acceptance checks for API, UI, AI grounding/fallback, and deployment readiness.`
+
+### Implement
+
+`/speckit.implement Execute all tasks from tasks.md and summarize completed work plus any follow-up manual checks.`
+
+### AVM Terraform parity prompt
+
+`Create a Terraform AVM equivalent of the current Bicep AVM deployment architecture (resource grouping, registry, container apps, observability, and AI/search dependencies) and show module mapping for each major component.`
+
+---
+
 ## Live demo flow
 
 ### 1) Explain the baseline (2 min)
