@@ -38,15 +38,28 @@ https://github.com/DanWahlin/github-azure-agentic-journeys/blob/main/journeys/ai
 
 ---
 
+## Timebox (15–20 minutes)
+
+- 0:00–2:00 — session framing + architecture baseline
+- 2:00–8:00 — GitHub Spec‑Kit flow (constitution/spec/plan/tasks/implement)
+- 8:00–12:00 — AVM with Bicep (`azd up` path and module composition)
+- 12:00–15:00 — Terraform AVM parity walkthrough
+- 15:00–18:00 — app verification (search + assistant)
+- 18:00–20:00 — cleanup, recap, audience Q&A
+
+If time is tight, shorten implement details and keep Terraform to a structural comparison plus one `terraform plan` screenshot.
+
+---
+
 ## Live demo flow
 
-### 1) Explain the baseline
+### 1) Explain the baseline (2 min)
 
 - “This repo is a spec-driven variant of AIMarket.”
 - “The app is generated and governed by GitHub Spec‑Kit artifacts.”
 - “Infrastructure is AVM-first.”
 
-### 2) Run GitHub Spec‑Kit workflow
+### 2) Run GitHub Spec‑Kit workflow (6 min)
 
 Use these steps in order:
 
@@ -75,7 +88,7 @@ Use these steps in order:
 Talking point:  
 “Spec‑Kit converts intent into governed artifacts before implementation starts.”
 
-### 3) AVM with Bicep (primary)
+### 3) AVM with Bicep (primary) (4 min)
 
 Show generated or existing Bicep modules and highlight:
 
@@ -94,7 +107,7 @@ azd up
 Talking point:  
 “AVM gives repeatable, vetted resource composition with less bespoke IaC.”
 
-### 4) AVM with Terraform (secondary comparison segment)
+### 4) AVM with Terraform (secondary comparison segment) (3 min)
 
 Explain that the same infrastructure intent can be expressed with **Terraform AVM modules**:
 
@@ -115,14 +128,14 @@ Suggested demo pattern:
 Talking point:  
 “AVM is the consistency layer; Bicep vs Terraform is the delivery preference.”
 
-### 5) App verification
+### 5) App verification (2–3 min)
 
 - Open storefront and run:
   - semantic product search
   - AI shopping assistant prompts
 - Confirm graceful behavior if AI endpoint is unavailable.
 
-### 6) Cleanup (mandatory)
+### 6) Cleanup (mandatory) (1–2 min)
 
 ```bash
 azd down --force --purge
