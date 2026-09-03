@@ -2,6 +2,8 @@
 
 **Source scenario**: [DanWahlin/github-azure-agentic-journeys → journeys/aimarket](https://github.com/DanWahlin/github-azure-agentic-journeys/tree/main/journeys/aimarket).
 
+**Repository reference**: [DanWahlin/github-azure-agentic-journeys (main)](https://github.com/DanWahlin/github-azure-agentic-journeys/tree/main).
+
 That journey hands a hand-written `PLAN.md` to GitHub Copilot CLI and builds
 incrementally. **This runbook rebuilds the same app with spec-kit** — so the
 spec, the plan, and the task list are *generated and governed*, not authored by
