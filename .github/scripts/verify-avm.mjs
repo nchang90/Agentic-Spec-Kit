@@ -2,7 +2,7 @@
 // Verify a generated Terraform configuration against the Azure Platform
 // Constitution. Every check here is a constitutional principle made executable.
 //
-//   node .github/scripts/verify-avm.mjs                    # static checks on infra/
+//   node .github/scripts/verify-avm.mjs                    # checks known-good AIMarket reference
 //   node .github/scripts/verify-avm.mjs --dir path/to/tf
 //   node .github/scripts/verify-avm.mjs --offline          # skip registry lookups
 //   node .github/scripts/verify-avm.mjs --rg rg-name       # also check the deployed estate
@@ -23,7 +23,7 @@ const flag = (name) => {
 };
 const has = (name) => argv.includes(`--${name}`);
 
-const DIR = flag('dir') || 'infra';
+const DIR = flag('dir') || 'lab/03-aimarket/infra';
 const OFFLINE = has('offline');
 const RG = flag('rg');
 

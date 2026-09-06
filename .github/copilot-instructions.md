@@ -8,9 +8,8 @@ Terraform and Azure Verified Modules (AVM). The repository also contains local
 and application-focused labs that replace the constitution on a scratch
 branch or in a separate workspace.
 
-Start with `lab/lab-0-speckit-basics.md`. The deployment labs are
-`lab/aimarket-container-apps.md` and
-`lab/weatherview-static-web-apps.md`.
+Start with `lab/01-legacy-vm/`. The independent deployment labs are
+`lab/02-weatherview/` and `lab/03-aimarket/`.
 
 ## Active Infrastructure Baseline
 
@@ -25,9 +24,13 @@ Start with `lab/lab-0-speckit-basics.md`. The deployment labs are
 ## Commands
 
 ```bash
-terraform -chdir=infra init -backend=false
-node .github/scripts/verify-avm.mjs --dir infra --offline
+terraform -chdir=lab/03-aimarket/infra init -backend=false
+node .github/scripts/verify-avm.mjs --dir lab/03-aimarket/infra --offline
 ```
+
+The root `infra/` path is reserved for the current legacy-VM presentation demo.
+Use the commands above for the existing known-good reference until that demo
+configuration has been generated and validated.
 
 Application-specific commands belong to their labs. Provision and deploy
 through `/azure-prepare`, `/azure-validate`, and `/azure-deploy`; do not continue
@@ -38,7 +41,7 @@ resource group no longer exists.
 
 - Treat `.specify/memory/constitution.md` as the authoritative standing policy.
 - Use an AVM module when one covers the resource; document raw-resource
-  exceptions in `infra/EXCEPTIONS.md`.
+  exceptions beside the relevant lab's infrastructure in `infra/EXCEPTIONS.md`.
 - Pin module versions exactly and commit `.terraform.lock.hcl`.
 - Prefer managed identity, configure diagnostics where supported, and preserve a
   verified teardown path.

@@ -1,4 +1,4 @@
-# Demo Runbook — Building AIMarket using Spec-Driven Development
+# Lab 3 — Building AIMarket using Spec-Driven Development
 
 That journey hands a hand-written `PLAN.md` to GitHub Copilot CLI and builds
 incrementally. **This runbook rebuilds the same app with spec-kit** — so the
@@ -9,6 +9,14 @@ hand.
 SQLite) and a React storefront, plus semantic search (Azure AI Search) and a
 shopping assistant (Microsoft Foundry, `gpt-5-mini`), deployed to Azure
 Container Apps via Terraform AVM and the Azure deployment skills.
+
+This directory also contains the AIMarket constitution under `assets/` and a
+prepared, pinned AVM Terraform reference under `infra/`. Commands in the full
+walkthrough are run from the repository root unless stated otherwise.
+
+The full walkthrough generates application files and an `infra/` directory.
+Run that workflow on its own scratch branch or in a separate workspace so it
+does not overwrite the root legacy-VM presentation infrastructure.
 
 > ### This demo deploys. Budget for it.
 >
@@ -27,13 +35,13 @@ Container Apps via Terraform AVM and the Azure deployment skills.
 > AI Search Basic **does not scale to zero** — it is the whole story.
 >
 > **Want a spec-kit demo that deploys and still costs nothing?**
-> [`weatherview-static-web-apps.md`](weatherview-static-web-apps.md) — Azure
+> [WeatherView](../02-weatherview/) — Azure
 > Static Web Apps Free tier, $0, no keys, no containers.
 >
 > **But you are not running this for a month.** Prorated, the whole stack is
 > roughly **$0.13/hour**, so a rehearsal plus a talk lands well under a dollar,
 > and a full day is about $3. The monthly figure only bites if you forget to tear
-> tear-down — which is why the cleanup step is on the last slide.
+> down — which is why the cleanup step is on the last slide.
 >
 > **Cleanup is mandatory, not optional.** Put it on the last slide so you can't
 > forget it.
@@ -41,6 +49,46 @@ Container Apps via Terraform AVM and the Azure deployment skills.
 > There is a local checkpoint partway through where the app runs on `localhost`
 > with the AI features degrading gracefully. That's a rehearsal gate and a
 > fallback if the deploy misbehaves live — not the finish line.
+
+## Choose your route
+
+| Route | Use it for | Duration |
+|---|---|---:|
+| [Presenter path](#10-minute-presenter-path) | Show Spec Kit governing Azure AVM delivery | 10 minutes |
+| [Full walkthrough](#full-workshop-walkthrough) | Generate, deploy, verify, and remove AIMarket | 60–90 minutes |
+
+## 10-minute presenter path
+
+Use prepared Spec Kit artifacts and the checked-in [Terraform reference](infra/).
+Do not generate the full application or run `terraform apply` on stage.
+
+| Step | Show | Say |
+|---|---|---|
+| 1 | AIMarket architecture and cost warning | “This workload needs stronger controls because it creates real, billable infrastructure.” |
+| 2 | The identity, AI grounding, and AVM constitution rules | “Standing policy constrains every feature and implementation.” |
+| 3 | Relevant sections of `spec.md` and `plan.md` | “The spec owns outcomes; the plan maps them to Azure services and AVM modules.” |
+| 4 | `tasks.md` dependencies | “Deployment, validation, and cleanup are explicit work—not assumptions.” |
+| 5 | On a throwaway branch, remove one AVM version and run the verifier | “The policy is executable and rejects an unpinned module before deployment.” |
+| 6 | Restore the version and rerun the verifier | “Passing output becomes review evidence without creating a resource.” |
+| 7 | `/speckit-converge` loop | “Implement and converge repeat until the code matches the contract.” |
+
+Run the verifier from the repository root:
+
+```bash
+node .github/scripts/verify-avm.mjs --dir lab/03-aimarket/infra --offline
+```
+
+**Audience takeaway:** Spec Kit governs intent, AVM provides the Azure
+implementation vocabulary, and validation supplies evidence.
+
+### Quick navigation
+
+- [Stage preparation](#0-before-you-walk-on-stage-prep-checklist)
+- [Full walkthrough](#full-workshop-walkthrough)
+- [Local checkpoint](#checkpoint-run-it-locally)
+- [Azure validation and deployment](#the-finale-validate-and-deploy-with-azure-skills)
+- [Cleanup](#cleanup)
+- [Stage recovery](#when-something-breaks-on-stage)
 
 ---
 
@@ -66,7 +114,11 @@ Container Apps via Terraform AVM and the Azure deployment skills.
 
 ---
 
-## The five phases
+## Full workshop walkthrough
+
+The following sections are the complete application and deployment path. Use
+them for rehearsal or a hands-on workshop rather than attempting every step in a
+10-minute presentation.
 
 ### Step 0 — Prepare the repository
 
@@ -421,7 +473,9 @@ failure becomes a diagnosis instead of a guess.
 budget entirely on hidden reasoning and return an empty message. A simple lookup
 can pass while that's broken; a comparison forces real output.
 
-### 🧹 Cleanup — do not skip
+### Cleanup
+
+Do not skip this step.
 
 Record the resource group name first, then destroy the Terraform-managed
 infrastructure and **verify**:

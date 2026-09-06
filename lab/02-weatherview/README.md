@@ -1,4 +1,4 @@
-# Demo Runbook — WeatherView with Spec-Driven Development
+# Lab 2 — WeatherView with Spec-Driven Development
 
 **Source scenario**: [DanWahlin/github-azure-agentic-journeys → journeys/weather-view](https://github.com/DanWahlin/github-azure-agentic-journeys/tree/main/journeys/weather-view).
 That journey drives a hand-written `PLAN.md` through GitHub Copilot CLI. **This
@@ -9,7 +9,7 @@ list are generated and governed instead of authored by hand.
 vanilla HTML/CSS/JS, backed by the free Open-Meteo APIs, deployed to Azure
 Static Web Apps with `azd` + Bicep.
 
-> ### 💚 This one is free
+> ###  This one is free
 >
 > Azure Static Web Apps **Free tier**, no API keys, no backend, no database, no
 > container, no Docker. Open-Meteo needs no account. Cost is **$0** within the
@@ -23,9 +23,36 @@ accessibility, fail-closed validation, no framework, deterministic tests — are
 *checkable*. You can show a violation being caught. Contrast that with a
 constitution full of platitudes nobody can verify.
 
+## Demo flow
+
+Use a prepared WeatherView workspace. Do not generate the whole application or
+deploy Azure resources during the demo.
+
+| Step | Demo action | Talking point |
+|---|---|---|
+| 1 | The running forecast site | “This is a small application with requirements that can fail in subtle ways.” |
+| 2 | Two constitution rules: accessibility and deterministic dates | “A useful constitution contains assertions we can verify.” |
+| 3 | `spec.md`, especially forecast timezone behavior | “The specification describes observable behavior, not a framework.” |
+| 4 | `plan.md` and `tasks.md` | “Technical choices appear in the plan and become ordered work.” |
+| 5 | `/speckit-analyze` or checklist results | “Quality gates test the requirements before implementation.” |
+| 6 | The timezone test and corrected date | “The contract catches a real previous-day rendering defect.” |
+| 7 | Demonstrate keyboard navigation and the theme toggle | “The implementation now provides evidence for the original rules.” |
+
+**Demo takeaway:** specifications can catch real defects when requirements
+are precise, observable, and testable.
+
+### Quick navigation
+
+- [Demo preparation](#demo-preparation)
+- [Build walkthrough](#build-walkthrough)
+- [Application checkpoint](#checkpoint-run-it-locally)
+- [Azure deployment](#deploy-to-azure-static-web-apps)
+- [Cleanup](#cleanup)
+- [Demo recovery](#demo-recovery)
+
 ---
 
-## 0. Before you walk on stage (prep checklist)
+## Demo preparation
 
 - [ ] VS Code open on this repo, **GitHub Copilot Chat** signed in
 - [ ] `node --version` (LTS), `az version`, `azd version` (>= 1.28.0), `git --version`
@@ -42,7 +69,11 @@ constitution full of platitudes nobody can verify.
 
 ---
 
-## The five phases
+## Build walkthrough
+
+The following sections generate the complete application and its demo artifacts.
+Prepare a working checkpoint in advance so the demo can continue if generation
+or deployment is delayed.
 
 ### Step 0 — Generate into a separate workspace
 
@@ -63,7 +94,7 @@ Then `cd ../weather-view-workspace` and run the spec-kit phases from there.
 ### Step 1 — Constitution
 
 Every rule below is testable. That is the point — read two of them aloud and let
-the audience notice they're assertions, not aspirations.
+people see that they are assertions, not aspirations.
 
 ```
 /speckit-constitution Fill the constitution for an accessible, dependency-free static web application.
@@ -246,7 +277,7 @@ azd env get-value WEB_URL
 Open it. Re-run the same six-step demo against the live site, and capture a
 full-page screenshot — the journey treats that as an acceptance artifact.
 
-### 🧹 Cleanup
+### Cleanup
 
 ```bash
 azd env get-value RESOURCE_GROUP_NAME          # save this
@@ -258,7 +289,7 @@ az group exists --name <resource-group-name>   # must return: false
 
 ---
 
-## When something breaks on stage
+## Demo recovery
 
 Stay in the same session so it keeps context, and paste:
 
@@ -278,7 +309,7 @@ Paste the **exact** error, never a paraphrase.
 
 ---
 
-## Known friction (rehearse these)
+## Known demo risks
 
 - **Static Web Apps has five deployment regions.** `centralus`, `eastus2`,
   `westus2`, `westeurope`, `eastasia`. Default to `eastus2`. Asking for anything
@@ -292,14 +323,14 @@ Paste the **exact** error, never a paraphrase.
   has an approved recovery. Never install privileged emulation or make Docker a
   prerequisite.
 - **Open-Meteo is live and unauthenticated.** No key to leak, but it is a real
-  network dependency — have a cached screenshot in reserve if the venue wifi is
-  hostile.
+  network dependency. Keep a cached screenshot available in case the demo
+  network is unavailable.
 - **Model choice.** Use a frontier model for the constitution, the plan, and the
   accessibility review. Smaller models are fine for narrow test fixes.
 
 ---
 
-## Tips
+## Demo tips
 
 - **Don't read the prompts aloud** — paste, then narrate the intent.
 - Open the journey's `PLAN.md`, scroll all 344 lines of it, and say *"someone
