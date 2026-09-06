@@ -3,6 +3,10 @@
 This demo belongs immediately after the presentation's **Spec Kit Workflow**
 slide and before **Azure Guardrails**.
 
+Its learning goal is to practise the first three stages of the
+[official Spec Kit full path](https://github.github.com/spec-kit/quickstart.html):
+constitution, specify, and clarify. Demo 2 completes the remaining stages.
+
 It begins the story that Demo 2 completes:
 
 ## Story: The Legacy VM That Never Needed a Public IP
@@ -41,8 +45,8 @@ By the end of Demo 1, the team has:
 4. Acceptance criteria that reviewers can verify.
 
 No infrastructure is generated or deployed in this demo. Demo 2 takes the
-approved specification through planning, tasks, AVM implementation, and
-validation.
+approved specification through planning, checklist review, tasks, analysis, AVM
+implementation, convergence, and validation.
 
 ## Demo flow
 
@@ -83,8 +87,8 @@ durable artifacts that separate intent from implementation:
 | `/speckit-implement` | Build the planned solution | repository source files |
 | `/speckit-converge` | Compare implementation with the contract | appends missing work to `tasks.md` |
 
-Demo 1 stops after clarification. Demo 2 continues from the approved
-specification.
+Together, the two demos follow the official full path. Demo 1 stops after
+clarification; Demo 2 continues from the approved specification.
 
 > **Command names:** syntax depends on the coding-agent integration. Official
 > material commonly shows `/speckit.specify`; this repository's Copilot skills

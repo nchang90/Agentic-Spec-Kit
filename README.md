@@ -4,13 +4,33 @@ A collection of self-contained labs for building software and Azure
 infrastructure with [Spec Kit](https://github.com/github/spec-kit), GitHub
 Copilot, and executable engineering policy.
 
+## Learning goal
+
+The primary goal is to learn the
+[official Spec Kit recommended process](https://github.github.com/spec-kit/quickstart.html)
+from end to end. Azure and AVM provide the worked example; they do not replace
+the Spec Kit workflow.
+
+After completing the legacy-VM lab, you should be able to explain and use:
+
+```text
+CONSTITUTION → SPECIFY → CLARIFY → PLAN → CHECKLIST
+             → TASKS → ANALYZE → IMPLEMENT → CONVERGE
+```
+
+You should also understand the boundary between each artifact: requirements
+belong in the specification, technology belongs in the plan, work is derived
+into tasks, and implementation is repeatedly converged against the approved
+contract.
+
 The central idea is simple:
 
 1. Write standing rules in a constitution.
 2. Specify observable outcomes without choosing an implementation.
-3. Plan the technology and architecture.
-4. Generate dependency-ordered tasks.
-5. Implement, verify, and converge the result back against the specification.
+3. Clarify ambiguity and review requirement quality.
+4. Plan the technology and architecture.
+5. Generate and analyze dependency-ordered tasks.
+6. Implement and converge until the result matches the specification.
 
 This repository makes that loop concrete with focused demo and lab runbooks, an
 Azure Verified Modules (AVM) infrastructure example, and a verifier
@@ -66,7 +86,8 @@ checklists. Do not deploy before reading the cost and teardown sections.
 
 ## Spec Kit commands
 
-The current skills integration uses hyphenated command names:
+The labs follow the official quickstart's **full path**. This repository's
+Copilot skills integration uses hyphenated command names:
 
 ```text
 /speckit-constitution

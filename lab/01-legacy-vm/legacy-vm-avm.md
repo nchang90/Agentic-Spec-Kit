@@ -10,6 +10,10 @@ Demo 1 replaced a vague migration prompt with an approved specification. Demo 2
 shows that the specification controls the architecture, Terraform, and
 validation evidence.
 
+Its learning goal is to complete the remaining stages of the
+[official Spec Kit full path](https://github.github.com/spec-kit/quickstart.html):
+plan, checklist, tasks, analyze, implement, and converge.
+
 The scenario is adapted from Microsoft's
 [experimental AVM Spec Kit example](https://azure.github.io/Azure-Verified-Modules/experimental/ai-assisted-sol-dev/spec-kit/avm-example/).
 That page provides the reference architecture and a detailed Spec Kit
@@ -25,10 +29,11 @@ conventions, and executable AVM verifier.
 By the end of Demo 2, the audience has seen:
 
 1. Requirements become explicit architecture decisions.
-2. Architecture decisions become dependency-ordered work.
-3. The work becomes pinned Azure Verified Modules.
-4. Spec Kit checks implementation completeness.
-5. Terraform and the AVM verifier produce infrastructure-specific evidence.
+2. A checklist gates requirement quality before implementation.
+3. Architecture decisions become analyzed, dependency-ordered work.
+4. The work becomes pinned Azure Verified Modules.
+5. Spec Kit checks implementation completeness.
+6. Terraform and the AVM verifier produce infrastructure-specific evidence.
 
 Do not generate or deploy the full workload live. Use prepared artifacts and run
 only the fast, local validation commands.
@@ -56,7 +61,8 @@ out of scope for this retained single-instance workload.
 |---|---|---|
 | Recall the contract | Open the approved `spec.md` from Demo 1 | Security and operational outcomes are explicit. |
 | Design from intent | Open the generated `plan.md` | Each important requirement has an architecture decision. |
-| Make work traceable | Open `tasks.md` | Networking, identity, compute, storage, monitoring, and validation are dependency ordered. |
+| Gate requirement quality | Open the generated checklist | Reviewers confirm the requirements are clear and complete. |
+| Make work traceable | Open `tasks.md` and the analysis result | Work is dependency ordered and cross-artifact gaps are resolved. |
 | Inspect the implementation | Open prepared Terraform under `infra/` | Resources use pinned AVM modules and shared interfaces. |
 | Prove the policy | Run Terraform validation and the AVM verifier | Invalid sourcing, versioning, diagnostics, or lifecycle choices fail before deployment. |
 | Close the loop | Show `/speckit-converge` output | Missing implementation work returns to `tasks.md`. |
@@ -168,14 +174,19 @@ not in the user-facing specification.
 
 ---
 
-## Step 3 — Derive and inspect the work
+## Step 3 — Gate the specification, then derive the work
 
 During rehearsal, run:
 
 ```text
+/speckit-checklist
 /speckit-tasks
 /speckit-analyze
 ```
+
+Open the custom checklist first. Explain that it evaluates the **quality of the
+requirements**, not whether the infrastructure has already been implemented.
+The reviewer owns its checkbox state.
 
 Open `tasks.md` and show that dependencies determine the order:
 
@@ -189,13 +200,18 @@ Open `tasks.md` and show that dependencies determine the order:
 8. Validation and evidence.
 
 Use `/speckit-analyze` before implementation to find conflicts or requirements
-that have no corresponding task.
+that have no corresponding task. It is read-only: fix findings in the source
+artifact and run it again.
 
 ---
 
 ## Step 4 — Trace requirements into AVM
 
-Open the prepared Terraform configuration. Do not walk through every line.
+During rehearsal, run `/speckit-implement` after the checklist is approved and
+the analysis is clean. For the presentation, open the prepared Terraform rather
+than waiting for the complete workload to generate.
+
+Do not walk through every line.
 Follow one requirement across the delivery chain:
 
 ```text
@@ -304,7 +320,9 @@ Return to the requirement-to-evidence table and close with:
 The audience should leave with this chain:
 
 ```text
-SPEC → PLAN → TASKS → IMPLEMENT → CONVERGE → VALIDATE
+CONSTITUTION → SPECIFY → CLARIFY → PLAN → CHECKLIST
+             → TASKS → ANALYZE → IMPLEMENT → CONVERGE
+             → TERRAFORM AND AVM VALIDATION
 ```
 
 ## Demo recovery

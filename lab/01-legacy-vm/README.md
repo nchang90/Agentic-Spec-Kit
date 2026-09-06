@@ -1,5 +1,20 @@
 # Lab 1 — Legacy VM with Spec Kit and AVM
 
+## Learning objective
+
+Learn the
+[official Spec Kit full path](https://github.github.com/spec-kit/quickstart.html)
+using one continuous Azure infrastructure story:
+
+```text
+CONSTITUTION → SPECIFY → CLARIFY → PLAN → CHECKLIST
+             → TASKS → ANALYZE → IMPLEMENT → CONVERGE
+```
+
+AVM is introduced during planning as the Azure implementation vocabulary. The
+main subject remains Spec-Driven Development: keeping intent, design, work, and
+implementation traceable while moving through the complete Spec Kit process.
+
 ## Story
 
 **The Legacy VM That Never Needed a Public IP**
@@ -13,8 +28,8 @@ mishandling credentials, or omitting operational evidence.
    establishes the constitution, specification, clarification answers, and
    acceptance criteria.
 2. [Demo 2 — From Specification to Governed AVM Infrastructure](legacy-vm-avm.md)
-   traces the approved requirements into planning, tasks, Terraform AVM modules,
-   convergence, and validation.
+   continues through planning, checklist review, tasks, analysis, implementation,
+   convergence, and infrastructure validation.
 
 The demos are one continuous story. Demo 1 deliberately stops before selecting
 technology; Demo 2 introduces AVM as the implementation vocabulary.
