@@ -6,10 +6,10 @@ description: "Task list template for feature implementation"
 # Tasks: [FEATURE NAME]
 
 **Input**: Design documents from `/specs/[###-feature-name]/`
+
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Include every test required by the
-feature specification or constitution; additional tests are OPTIONAL.
+**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -26,21 +26,21 @@ feature specification or constitution; additional tests are OPTIONAL.
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-<!-- 
+<!--
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
-  The /speckit.tasks command MUST replace these with actual tasks based on:
+
+  The /speckit-tasks command MUST replace these with actual tasks based on:
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
-  
+
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
-  
+
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================
 -->
@@ -63,21 +63,12 @@ feature specification or constitution; additional tests are OPTIONAL.
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Set up database schema, migrations, repository contracts, and
- `DATA_PROVIDER` selection with SQLite as the default
-- [ ] T005 Implement server-side input validation, integer-cents money handling,
- and referenced-entity checks before writes
-- [ ] T006 [P] Set up API routing and middleware structure without direct storage
- access from routes
+- [ ] T004 Setup database schema and migrations framework
+- [ ] T005 [P] Implement authentication/authorization framework
+- [ ] T006 [P] Setup API routing and middleware structure
 - [ ] T007 Create base models/entities that all stories depend on
 - [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Set up environment configuration management without source-controlled
- secrets
-
-When applicable, add foundational tasks for repository contract tests across every
-provider, catalog-grounded AI fallback behavior, Bicep with pinned AVM modules,
-managed-identity roles, Azure-managed container builds, and deployment preflight
-validation targeting `westus`.
+- [ ] T009 Setup environment configuration management
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -165,10 +156,6 @@ validation targeting `westus`.
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
-- [ ] TXXX Verify repository-provider contract tests, server-side data-integrity
-  tests, and AI grounding/degradation tests where applicable
-- [ ] TXXX Validate Bicep/AVM usage, managed identity, absence of source secrets,
-  Azure-managed image build, and pre-deployment checks for `westus`
 - [ ] TXXX Run quickstart.md validation
 
 ---

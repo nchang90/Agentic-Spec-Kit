@@ -1,56 +1,60 @@
-# Spec-Kit Development Guidelines
+# Agentic Spec Kit Development Guidelines
 
 ## Purpose
 
-This repo demonstrates spec-driven development with **spec-kit**, building
-**AIMarket** — a marketplace API + React storefront with semantic search and an
-AI shopping assistant, deployed to Azure Container Apps with `azd`.
+This repository is a workshop for spec-driven development with **Spec Kit**.
+Its checked-in constitution and templates govern Azure infrastructure built with
+Terraform and Azure Verified Modules (AVM). The repository also contains local
+and application-focused labs that replace the constitution on a scratch
+branch or in a separate workspace.
 
-Scenario adapted from
-[DanWahlin/github-azure-agentic-journeys → journeys/aimarket](https://github.com/DanWahlin/github-azure-agentic-journeys/tree/main/journeys/aimarket).
-The demo script is `DEMO.md`.
+Start with `lab/lab-0-speckit-basics.md`. The deployment labs are
+`lab/aimarket-container-apps.md` and
+`lab/weatherview-static-web-apps.md`.
 
-## Active Technologies
+## Active Infrastructure Baseline
 
-- API: Node.js + TypeScript + Express, `better-sqlite3` (local), repository
-  pattern behind a `DATA_PROVIDER` factory
-- Frontend: React 18 + Vite + Tailwind CSS
-- AI: Azure AI Search (Basic SKU, semantic ranker) + Microsoft Foundry
-  (`gpt-5-mini`, fallback `gpt-5.4-mini`)
-- Infrastructure: Bicep with Azure Verified Modules (`br/public:avm/...`),
-  deployed via `azd` to Azure Container Apps
+- Infrastructure: Terraform with exact AVM module pins
+- Authentication: managed identity and RBAC instead of shared secrets
+- Networking: virtual network, delegated and private-endpoint subnets
+- Operations: diagnostic settings routed to Log Analytics
+- Validation: `terraform fmt`, `terraform validate`, and
+  `.github/scripts/verify-avm.mjs`
 - Region: `westus`
 
 ## Commands
 
 ```bash
-npm run dev                  # API on :3000, storefront on :5173
-azd up                       # provision + deploy to Azure
-azd down --force --purge     # tear down — always run after a demo
+terraform -chdir=infra init -backend=false
+node .github/scripts/verify-avm.mjs --dir infra --offline
 ```
 
-## Code Style
+Application-specific commands belong to their labs. Provision and deploy
+through `/azure-prepare`, `/azure-validate`, and `/azure-deploy`; do not continue
+unless validation reports `Validated`. After teardown, confirm that the target
+resource group no longer exists.
 
-- TypeScript: standard conventions; routes use repository contracts only and never
-  import database clients directly. Select the provider through `DATA_PROVIDER`,
-  defaulting to SQLite.
-- Data integrity: validate all client input on the server; store and calculate money
-  as integer cents; validate referenced entities before writes.
-- AI: use only catalog data supplied to the request; never invent products. Return a
-  safe fallback or explicit AI-unavailable response without blocking core catalog and
-  ordering flows.
-- Bicep: use declarative Bicep with pinned AVM modules where available; prefer
-  managed identity and never commit or print secrets.
-- Delivery: build release container images in Azure, run build/IaC/preflight
-  validation before deployment, and target `westus`.
+## Engineering Rules
+
+- Treat `.specify/memory/constitution.md` as the authoritative standing policy.
+- Use an AVM module when one covers the resource; document raw-resource
+  exceptions in `infra/EXCEPTIONS.md`.
+- Pin module versions exactly and commit `.terraform.lock.hcl`.
+- Prefer managed identity, configure diagnostics where supported, and preserve a
+  verified teardown path.
+- Never commit or print secrets, state files, `.tfvars`, local databases, or
+  generated Terraform working directories.
 
 <!-- MANUAL ADDITIONS START -->
 
 ## Skills
 
-Consult `.github/skills/` before generating code or infrastructure:
+Consult these reference skills in `.github/skills/` before relevant work (the
+`speckit-*` folders are Spec Kit's commands, not reference material):
 
+- `avm-terraform` — module selection, exact pinning, common AVM interfaces, and
+  teardown-safe settings
 - `data-access-abstraction` — repository pattern and the `DATA_PROVIDER` factory
-- `container-apps-deployment` — `azure.yaml`, zone redundancy, managed-identity
+- `container-apps-deployment` — Container Apps zone redundancy, managed-identity
   ACR pulls, the `VITE_API_URL` postdeploy hook, SPA nginx routing
 <!-- MANUAL ADDITIONS END -->

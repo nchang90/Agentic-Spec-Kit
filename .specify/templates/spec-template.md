@@ -1,8 +1,11 @@
 # Feature Specification: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
+**Feature Branch**: `[###-feature-name]`
+
+**Created**: [DATE]
+
+**Status**: Draft
+
 **Input**: User description: "$ARGUMENTS"
 
 ## User Scenarios & Testing *(mandatory)*
@@ -11,7 +14,7 @@
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
+
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
   - Developed independently
@@ -85,7 +88,7 @@
 ### Functional Requirements
 
 - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
+- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
@@ -94,25 +97,6 @@
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Constitution-Derived Constraints *(mandatory when applicable)*
-
-<!--
-  ACTION REQUIRED: Translate every applicable constitutional rule into a testable
-  requirement. For this cloud-native full-stack application, address repository
-  portability, server-side validation and cents, referenced-entity checks,
-  catalog-grounded AI degradation, and Azure delivery constraints.
--->
-
-- **CR-001**: [Routes use repository contracts selected by `DATA_PROVIDER`, which
-  defaults to SQLite; changing providers does not change routes.]
-- **CR-002**: [Server validates client input, stores and calculates money in integer
-  cents, and validates referenced entities before writes.]
-- **CR-003**: [If AI is in scope, it uses only catalog data supplied to the request
-  and degrades safely without blocking core flows.]
-- **CR-004**: [If Azure deployment is in scope, Bicep/AVM, managed identity,
-  source-secret exclusion, Azure image builds, pre-deployment validation, and
-  `westus` are covered.]
 
 ### Key Entities *(include if feature involves data)*
 
